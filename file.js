@@ -13,7 +13,7 @@ function guessNumber() {
   let userVal = Number(guessInput.value);
 
   if (!userVal || userVal < 1 || userVal > 10) {
-    hint.innerHTML = 'Please enter a number between 1 and 10';
+    hint.innerHTML = 'Enter 1-10!';
     return;
   }
 
@@ -21,13 +21,13 @@ function guessNumber() {
   attempt.innerHTML = 'Attempts: ' + counter;
 
   if (userVal === randomNum) {
-    hint.innerHTML = `🎉 Correct! The number was ${randomNum}.`;
+    hint.innerHTML = 'You are correct!';
     isGameOver = true;
     btn.innerHTML = 'Play Again';
   } else if (userVal > randomNum) {
-    hint.innerHTML = 'Hint: Too High! Try lower.';
+    hint.innerHTML = 'Hint: Too High';
   } else {
-    hint.innerHTML = 'Hint: Too Low! Try higher.';
+    hint.innerHTML = 'Hint: Too Low';
   }
 
   guessInput.value = '';
@@ -36,7 +36,6 @@ function guessNumber() {
 
 btn.addEventListener('click', function () {
   if (isGameOver) {
-    // Reset game
     randomNum = Math.floor(Math.random() * 10 + 1);
     counter = 0;
     isGameOver = false;
@@ -46,8 +45,4 @@ btn.addEventListener('click', function () {
   } else {
     guessNumber();
   }
-});
-
-guessInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') guessNumber();
 });
